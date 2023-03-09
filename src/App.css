@@ -1,7 +1,14 @@
 table{
-  width: 400px
+  width: 400px;
+  margin: auto
 }
 
 td{
   /* border: 1px solid black; */
+  text-align: center;
+}
+
+button{
+  margin-top: 5px;
+  box-shadow: 2px 2px #88888888;
 }

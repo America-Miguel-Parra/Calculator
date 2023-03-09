@@ -2,13 +2,15 @@ import './App.css'
 
 function App() {
   return(
-    <div>
-    <h1>Calculator</h1>
+    <div className='app'>
+    <h1 className='shadow-sm'>Calculator</h1>
     <table>
       {/*first row */}
       
       <tr>
-        <td colSpan={4}>RESULTADO</td>
+        <td colSpan={4} style={{border: "1px solid black", textAlign: "end"}}>
+          <h2>0</h2>
+        </td>
       </tr>
       
       {/*second row */}
@@ -39,8 +41,10 @@ function App() {
         <td rowSpan={2}> <button type="button" class="btn btn-primary w-100 p-5">=</button> </td>
       </tr>
       {/*Six row */}
+
       <tr>
-        <td colSpan={2}> <button type="button" class="btn btn-primary w-100 p-3">0</button> </td>
+      <td colSpan={1}> <button type="button" class="btn btn-primary w-100 p-3">DEL</button> </td>
+        <td> <button type="button" class="btn btn-primary w-100 p-3">0</button> </td>
         <td> <button type="button" class="btn btn-primary w-100 p-3">.</button> </td>
       </tr>
 
