@@ -1,18 +1,34 @@
 import './App.css'
 import { useState } from 'react'
 
-const buttonClass = "btn btn-primary w-100 p-5" 
-const buttonsClasses = "btn btn-primary w-100 p-3" 
+const buttonClass = "btn btn-primary w-100 p-5"  /*Con la clase se manda a llamar en todos los botones la configuración del boton */
+const buttonsClasses = "btn btn-primary w-100 p-3"  /*Con la clase se manda a llamar en todos los botones la configuración del boton */
 
 function App() {
 
   const [screen, setScreen] = useState('0')
 
-  const handleButtonClick = () => {
+  const handleButtonClick = () => {   /*Funcion que hace que funcione el boton 9*/
     if(screen === '0') {
       setScreen('9')
     } else {
       setScreen(`${screen}9`)
+    }
+  }
+
+  const handleButtonClick8 = () => {   /*Funcion que hace que funcione el boton 9*/
+    if(screen === '0') {
+      setScreen('8')
+    } else {
+      setScreen(`${screen}8`)
+    }
+  }
+
+  const handleButtonClick7 = () => {   /*Funcion que hace que funcione el boton 9*/
+    if(screen === '0') {
+      setScreen('7')
+    } else {
+      setScreen(`${screen}7`)
     }
   }
   
@@ -37,11 +53,9 @@ function App() {
       </tr>
       {/*Three row */}
       <tr>
-        <td> <button type="button" className={buttonsClasses}>7</button> </td>
-        <td> <button type="button" className={buttonsClasses}>8</button> </td>
-        <td> <button type="button" className={buttonsClasses}
-        onClick={handleButtonClick}
-        >9</button></td>
+        <td> <button type="button" className={buttonsClasses}onClick={handleButtonClick7}>7</button> </td>
+        <td> <button type="button" className={buttonsClasses}onClick={handleButtonClick8}>8</button> </td>
+        <td> <button type="button" className={buttonsClasses}onClick={handleButtonClick}>9</button></td> 
         <td rowSpan={2}> <button type="button" className={buttonClass}>+</button> </td>
       </tr>
       {/*Four row */}
