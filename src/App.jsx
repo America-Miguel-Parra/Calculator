@@ -10,16 +10,29 @@ function App() {
 
   const handleButtonClick = (e) => {
     const {value} = e.target;
+    if (value == '.') {
+      if (screen.includes('.')) return;
+    }
     if (value === 'C'){
       setScreen('0')
       return;
     }
     console.log('click')
-    if (screen === '0'){
+    if (screen === '0' && value !== '.'){
     setScreen(value)
     } else { 
       setScreen(`${screen}${value}`)
     }
+
+  }
+
+  const handleDelButtonClick = () => {
+    if (screen.length == 1){
+      setScreen('0');
+      return
+      
+    } 
+    setScreen(screen.slice(0, -1));
   }
   
   return(
@@ -64,9 +77,9 @@ function App() {
       {/*Six row */}
 
       <tr>
-      <td colSpan={1}> <button type="button" className={buttonsClasses}>DEL</button> </td>
+      <td colSpan={1}> <button type="button" className={buttonsClasses}onClick={handleDelButtonClick}>DEL</button> </td>
         <td> <button type="button" className={buttonsClasses}>0</button> </td>
-        <td> <button type="button" className={buttonsClasses}>.</button> </td>
+        <td> <button type="button" className={buttonsClasses}value="." onClick={(e) => handleButtonClick(e)}>.</button> </td>
       </tr>
 
     </table>
