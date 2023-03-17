@@ -5,9 +5,10 @@ const buttonClass = "btn btn-primary w-100 p-5"  /*Con la clase se manda a llama
 const buttonsClasses = "btn btn-primary w-100 p-3"  /*Con la clase se manda a llamar en todos los botones la configuración del boton */
 
 function App() {
-
+  const [number1, setNumber1] = useState('');
+  const [clearScreen, setClearScreen] = useState(false);
   const [screen, setScreen] = useState('0')
-
+  
   const handleButtonClick = (e) => {
     const {value} = e.target;
     if (value == '.') {
@@ -17,6 +18,15 @@ function App() {
       setScreen('0')
       return;
     }
+
+    console.log({number1});
+    if (clearScreen) {
+      console.log('Cambia screen')
+      setScreen(value);
+      setClearScreen(false);
+      return;
+    }
+
     console.log('click')
     if (screen === '0' && value !== '.'){
     setScreen(value)
@@ -33,6 +43,20 @@ function App() {
       
     } 
     setScreen(screen.slice(0, -1));
+  }
+
+  const handleOperationButtonClick = (e) => {
+    const operator = e.target.value;
+    switch (operator){
+      case '+':
+        setNumber1 (screen);
+        console.log('Suma');
+        break;
+
+        default:
+        break;
+    }
+    setClearScreen(true);
   }
   
   return(
@@ -59,7 +83,9 @@ function App() {
         <td> <button type="button" className={buttonsClasses}value="7" onClick={(e) => handleButtonClick(e)}>7</button> </td>
         <td> <button type="button" className={buttonsClasses}value="8" onClick={(e) => handleButtonClick(e)}>8</button> </td>
         <td> <button type="button" className={buttonsClasses}value="9" onClick={(e) => handleButtonClick(e)}>9</button></td> 
-        <td rowSpan={2}> <button type="button" className={buttonClass}>+</button> </td>
+        <td rowSpan={2}> <button type="button" className={buttonClass}
+        value = "+"
+        onClick={(e) => handleOperationButtonClick (e)}>+</button> </td>
       </tr>
       {/*Four row */}
       <tr>
