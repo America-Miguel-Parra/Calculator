@@ -5,6 +5,7 @@ const buttonClass = "btn btn-primary w-100 p-5"  /*Con la clase se manda a llama
 const buttonsClasses = "btn btn-primary w-100 p-3"  /*Con la clase se manda a llamar en todos los botones la configuración del boton */
 
 function App() {
+  const [operator, setOPerator] = useState('');
   const [number1, setNumber1] = useState('');
   const [clearScreen, setClearScreen] = useState(false);
   const [screen, setScreen] = useState('0')
@@ -19,25 +20,25 @@ function App() {
       return;
     }
 
-    console.log({number1});
+
     if (clearScreen) {
-      console.log('Cambia screen')
+
       setScreen(value);
-      setClearScreen(false);
+      setClearScreen(false)
       return;
     }
 
-    console.log('click')
+
     if (screen === '0' && value !== '.'){
     setScreen(value)
-    } else { 
+    } else {
       setScreen(`${screen}${value}`)
-    }
+    }  
 
   }
 
   const handleDelButtonClick = () => {
-    if (screen.length == 1){
+    if (screen.length === 1){
       setScreen('0');
       return
       
@@ -46,18 +47,42 @@ function App() {
   }
 
   const handleOperationButtonClick = (e) => {
-    const operator = e.target.value;
-    switch (operator){
+    setOPerator(e.target.value);
+    setNumber1(screen);
+    setClearScreen(true);
+
+  }  
+  
+  const handleEqualButtonClick = () => {
+    const a = +number1;
+    const b = +screen;
+    switch (operator) {
       case '+':
-        setNumber1 (screen);
-        console.log('Suma');
+        setScreen ((a + b).toString());
         break;
 
+      case '-':
+          setScreen ((a - b).toString());
+          break;
+
+      case '*':
+            setScreen ((a * b).toString());
+            break;
+      case '*':
+            setScreen ((a * b).toString());
+            break;
+      
+      case '/':
+              setScreen ((a / b).toString());
+              break;
+
         default:
-        break;
+          break;
     }
-    setClearScreen(true);
+  
   }
+    
+  
   
   return(
     <div className='app'>
@@ -74,9 +99,9 @@ function App() {
       {/*second row */}
       <tr>
         <td> <button type="button" className={buttonsClasses}value="C" onClick={(e) => handleButtonClick(e)}>C</button> </td>
-        <td> <button type="button" className={buttonsClasses}>/</button> </td>
-        <td> <button type="button" className={buttonsClasses}>*</button> </td>
-        <td> <button type="button" className={buttonsClasses}>-</button> </td>
+        <td> <button type="button" className={buttonsClasses} value = "/" onClick={(e) => handleOperationButtonClick (e)}>/</button> </td>
+        <td> <button type="button" className={buttonsClasses} value = "*" onClick={(e) => handleOperationButtonClick (e)}>*</button> </td>
+        <td> <button type="button" className={buttonsClasses} value = "-" onClick={(e) => handleOperationButtonClick (e)}>-</button> </td>
       </tr>
       {/*Three row */}
       <tr>
@@ -98,7 +123,7 @@ function App() {
         <td> <button type="button" className={buttonsClasses}value="3" onClick={(e) => handleButtonClick(e)}>3</button> </td>
         <td> <button type="button" className={buttonsClasses}value="2" onClick={(e) => handleButtonClick(e)}>2</button> </td>
         <td> <button type="button" className={buttonsClasses}value="1" onClick={(e) => handleButtonClick(e)}>1</button> </td>
-        <td rowSpan={2}> <button type="button" className={buttonClass}>=</button> </td>
+        <td rowSpan={2}> <button type="button" className={buttonClass} onClick={handleEqualButtonClick}>=</button> </td>
       </tr>
       {/*Six row */}
 
@@ -112,7 +137,7 @@ function App() {
     </div>
   )
 
-  
+
 }
 
 export default App
